@@ -8,11 +8,13 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild(renderer.domElement);
 
-// //  create the shape
-// const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-// //  create material, color or image texture
-// const material = new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } );
-// const cube = new THREE.Mesh( geometry, material );
+window.addEventListener( 'resize', function(){
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    renderer.setSize( width, height );
+    camera.aspect = width / height ;
+    camera.updateProjectionMatrix();
+});
 
 var geometry = new THREE.TorusGeometry( 10, 3, 16, 100 );
 var material = new THREE.MeshBasicMaterial( { color: 0xffff00, wireframe: true } );
