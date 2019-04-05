@@ -1,12 +1,21 @@
-alert("BOOOOOOOOOOM 👾")
+alert( "BOOOOOOOOOOM 👾" )
 // scene is what you've been viewing
-let scene = new THREE.Scene();
-//  camer is what user can see
-let camera = new THREE.PerspectiveCamera(75, window.innereWidth / window.innerHeight, 0.1, 1000);
+const scene = new THREE.Scene();
+//  camera is what user can see
+const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-let renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innereWidth, window.innerHeight);
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild(renderer.domElement);
+
+//  create the shape
+const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+//  create material, color or image texture
+const material = new THREE.MeshBasicMaterial( { color: 0xFFFFFF, wireframe: false } );
+const cube = new THREE.Mesh( geometry, material );
+
+scene.add( cube ); // till here I can't see anything becauase I need to change the position of the camera
+camera.position.z = 3;
 
 //  game logic
 
@@ -16,13 +25,13 @@ const update = () => {
 
 //  draw scene
 const render = () => {
-    renderer.render(scene, camera);
+    renderer.render( scene, camera );
 
 }
 
 //  run GameLoop(update, render,repeat)
 const GameLoop = () => {
-    requestAnimationFrame(GameLoop);
+    requestAnimationFrame( GameLoop );
     update();
     render();
 }
