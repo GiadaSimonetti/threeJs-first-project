@@ -21,24 +21,34 @@ window.addEventListener( 'resize', function(){
 
 controls = new THREE.OrbitControls( camera, renderer.domElement );
 
-const geometry = new THREE.TorusGeometry( 10, 3, 16, 100 );
-const material = new THREE.MeshBasicMaterial( { color: 0xffff00, wireframe: true } );
-const torus = new THREE.Mesh( geometry, material );
-scene.add( torus );
+const geometry = new THREE.BoxGeometry( 1, 1, 1 );
 
-camera.position.z = 30;
+let cubeMaterials = [
+    new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/1.png'), side: THREE.DoubleSide } ), // RIGHT SIDE
+    new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/2.png'), side: THREE.DoubleSide } ), // LEFT SIDE
+    new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/3.png'), side: THREE.DoubleSide } ), // TOP SIDE
+    new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/4.png'), side: THREE.DoubleSide } ), // BOTTOM SIDE
+    new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/5.png'), side: THREE.DoubleSide } ), // FRONT SIDE
+    new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/6.png'), side: THREE.DoubleSide } ), // BACK SIDE
+]
+
+//  create material, color or image texture	//
+const material = new THREE.MeshFaceMaterial( cubeMaterials );
+const cube = new THREE.Mesh( geometry, material );
+
+scene.add( cube );
+camera.position.z = 3;
 
 //  game logic
 
 const update = () => {
-    // torus.rotation.x += 0.01
-    // torus.rotation.y += 0.01
+    // cube.rotation.x += 0.01
+    // cube.rotation.y += 0.01
 }
 
 //  draw scene
 const render = () => {
     renderer.render( scene, camera );
-
 }
 
 //  run GameLoop(update, render,repeat)

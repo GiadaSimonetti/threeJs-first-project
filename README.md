@@ -14,6 +14,8 @@
 
 :tada: :tada: :tada:
 
+![Image of torus](./img/torus.png)
+![Image of catCube](./img/catCube.png)
 
 ### TOPICS
 
