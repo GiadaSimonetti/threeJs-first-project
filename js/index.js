@@ -11,7 +11,7 @@ document.body.appendChild(renderer.domElement);
 //  create the shape
 const geometry = new THREE.BoxGeometry( 1, 1, 1 );
 //  create material, color or image texture
-const material = new THREE.MeshBasicMaterial( { color: 0xFFFFFF, wireframe: false } );
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } );
 const cube = new THREE.Mesh( geometry, material );
 
 scene.add( cube ); // till here I can't see anything becauase I need to change the position of the camera
@@ -20,7 +20,8 @@ camera.position.z = 3;
 //  game logic
 
 const update = () => {
-
+    cube.rotation.x += 0.01
+    cube.rotation.y += 0.01
 }
 
 //  draw scene
